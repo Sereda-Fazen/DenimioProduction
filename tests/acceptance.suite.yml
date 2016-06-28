@@ -1,0 +1,172 @@
+class_name: AcceptanceTester
+modules:
+    enabled:
+        - WebDriver
+        - Helper\Acceptance
+
+
+    config:
+        WebDriver:
+            url: 'https://staging:prospect@dev8.denimio.com'
+            browser: chrome
+
+            window_size: 1980x1780
+            restart: false
+
+
+            # --run in browserstack--
+
+            #host: 'hub.browserstack.com'
+            #port: 80
+
+            browser: chrome
+
+
+            restart: false
+            #wait: 13
+            #clear_cookies: false
+
+            capabilities:
+             browserstack.autoWait: 60
+             browserstack.user: 'mahotoharada1'
+             browserstack.key: 'UYCHp6jL5gei8WxtKVjY'
+             #browserstack.user: 'vladshalda1'
+             #browserstack.key: 'vMqut6yLFsfbhDzhB643'
+             resolution:  1920x1080
+
+
+             browserstack.debug: 'true'
+             #applicationCacheEnabled: false
+             unexpectedAlertBehaviour: 'accept'
+             pageLoadStrategy: 'eager'
+             os: 'WINDOWS'
+             os_version: 7
+
+
+env:
+
+  DEV_8:
+
+  DEV_PROD_FR:
+    modules:
+      config:
+        WebDriver:
+
+          url: 'https://www.denimio.com'
+          restart: false
+          browser: chrome
+          window_size: 1980x1780
+          clear_cookies: false
+          capabilities:
+            proxy:
+              proxyType: 'MANUAL'
+              httpProxy: '5.135.254.35:3128'
+              ftpProxy: '5.135.254.35:3128'             
+              sslProxy: '5.135.254.35:3128'
+
+          host: 'hub.browserstack.com'
+          port: 80
+
+  DEV_PROD_GR:
+      modules:
+        config:
+          WebDriver:
+
+            url: 'https://www.denimio.com'
+            restart: false
+            browser: chrome
+            window_size: 1980x1780
+            clear_cookies: false
+            capabilities:
+              proxy:
+                proxyType: 'MANUAL'
+                httpProxy: '125.129.130.109:8090'
+                ftpProxy: '125.129.130.109:8090'
+                sslProxy: '125.129.130.109:8090'
+
+            host: 'hub.browserstack.com'
+            port: 80
+
+
+
+
+  PROD:
+    modules:
+          config:
+            WebDriver:
+              url: 'https://www.denimio.com/'
+
+
+  DEV_2:
+    modules:
+      config:
+        WebDriver:
+          url: 'http://staging:prospect@dev2.denimio.com'
+
+  DEV_3:
+    modules:
+      config:
+        WebDriver:
+          url: 'https://staging:prospect@dev3.denimio.com'
+
+  DEV_4:
+    modules:
+      config:
+        WebDriver:
+          url: 'http://staging:prospect@dev4.denimio.com'
+
+  DEV_5:
+    modules:
+      config:
+        WebDriver:
+          url: 'http://staging:prospect@dev5.denimio.com'
+
+  DEV_6:
+    modules:
+      config:
+        WebDriver:
+          url: 'http://staging:prospect@dev6.denimio.com'
+
+  DEV_7:
+    modules:
+      config:
+        WebDriver:
+          url: 'http://staging:prospect@dev7.denimio.com'
+
+  DEV_9:
+    modules:
+      config:
+        WebDriver:
+          url: 'http://staging:prospect@dev9.denimio.com'
+
+  DEV_PROW:
+    modules:
+      config:
+        WebDriver:
+          url: 'https://149.202.195.201:4153/'
+          restart: false
+          browser: chrome
+          window_size: 1980x1780
+          #clear_cookies: false
+
+          #host: 'hub.browserstack.com'
+          #port: 80
+          capabilities:
+           browserstack.autoWait: 60
+           browserstack.user: 'mahotoharada1'
+           browserstack.key: 'UYCHp6jL5gei8WxtKVjY'
+           #browserstack.user: 'vladshalda1'
+           #browserstack.key: 'vMqut6yLFsfbhDzhB643'
+           resolution:  1920x1080
+
+
+
+
+
+
+
+  BROWSER:
+      modules:
+        config:
+          WebDriver:
+            url: 'http://browserstack.com/automate'
