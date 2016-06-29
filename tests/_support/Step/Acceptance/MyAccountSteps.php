@@ -81,15 +81,22 @@ class MyAccountSteps extends \AcceptanceTester
             $I->wait(2);
             $I->click('//div[@class="category-products"]/ul[1]/li['.$w.']//li[2]');
             $I->waitForAjax(40);
+
             $I->waitForElement('//a[@id="continue_shopping"]',30);
-            $I->waitForElementVisible('//a[@id="continue_shopping"]');
-            $I->click('//a[@id="continue_shopping"]');
+
+            try {
+                $I->click('//a[@id="continue_shopping"]');
+                $I->reloadPage();
+            }catch (Exception $e){}
         }
 
         $I->moveMouseOver('//*[@class="dropit-trigger"]');
         $I->click('//*[@class="dropit-trigger"]//li[2]');
         $I->seeElement('//div[@class="my-wishlist"]');
 
+        $I->waitForElement('//div[@class="my-wishlist"]//tbody/tr[2]//td/a[contains(@title,"Remove")]');
+        $I->click('//div[@class="my-wishlist"]//tbody/tr[2]//td/a[contains(@title,"Remove")]');
+        $I->acceptPopup();
 
         $I->fillField('//*[@class="add-to-cart-alt"]/input', '2');
         $I->click('//*[@name="do"]/span');
@@ -112,6 +119,7 @@ class MyAccountSteps extends \AcceptanceTester
 
 
 
+
     }
 
 
@@ -122,8 +130,9 @@ class MyAccountSteps extends \AcceptanceTester
         for ($w = $count; $w > 0; $w--) {
             $I->click('//*[@id="wishlist-table"]/tbody/tr['.$w.']/td[4]/a');
             $I->acceptPopup();
-            $I->getVisibleText('You have no items in your wishlist.');
+
         }
+        $I->waitForText('You have no items in your wishlist.');
     }
 
 

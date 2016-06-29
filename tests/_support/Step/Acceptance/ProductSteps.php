@@ -1,6 +1,8 @@
 <?php
 namespace Step\Acceptance;
 
+use Exception;
+
 class ProductSteps extends \AcceptanceTester
 {
 
@@ -9,7 +11,7 @@ class ProductSteps extends \AcceptanceTester
     {
         $I = $this;
         $I->amOnPage('/');
-        $I->click('#pt_custommenu > div:first-child > div.parentMenu > a > span');
+        $I->click('//div[@class="pt_custommenu"]//span[text()="Tops"]');
         $I->seeElement('//div[@class="category-products"]');
 
     }
@@ -23,12 +25,12 @@ class ProductSteps extends \AcceptanceTester
 
     }
 
-    public function checkInRandomOrder(){
+    public function checkInRandomOrder()
+    {
         $I = $this;
         $I->checkTops();
-       // $blockJeans = rand(1,count($I->grabMultiple('//div[@class="category-products"]/ul[1]/li')));
         $I->wait(2);
-        $I->click('//div[@class="category-products"]/ul['.rand(1,20).']/li['.rand(1,4).']/div/div/a/img');
+        $I->click('//div[@class="category-products"]/ul[' . rand(1, 10) . ']/li[' . rand(1, 4) . ']/div/div/a/img');
         $I->seeElement('//div[@class="product-essential"]/form/div[1]/div[2]');
 
     }
@@ -59,19 +61,20 @@ class ProductSteps extends \AcceptanceTester
         $I->click('//a[@id="bottomNavClose"]');
 
     }
+
     public function checkPictureArrows()
     {
         $I = $this;
         $I->checkInRandomOrder();
-       // $I->amOnPage('/studio-d-artisan-5535-crazy-pattern-check-work-shirt.html');
+        // $I->amOnPage('/studio-d-artisan-5535-crazy-pattern-check-work-shirt.html');
         $test2 = count($I->grabMultiple('//div[@class="more-views ma-thumbnail-container"]/div/div/ul/li'));
         $I->wait(3);
         if ($test2 > 4) {
             //$I->click('//div[@class="more-views ma-thumbnail-container"]/div/div/ul/li[' . rand(5, $test2) . ']');
             $I->waitForElement('//div[@class="more-views ma-thumbnail-container"]/div/div/ul/li');
             $I->scrollDown(200);
-            for($s = 6; $s <= 8; $s++){
-                $I->click('//div[@class="more-views ma-thumbnail-container"]/div/div/ul/li[' .$s. ']');
+            for ($s = 6; $s <= 8; $s++) {
+                $I->click('//div[@class="more-views ma-thumbnail-container"]/div/div/ul/li[' . $s . ']');
                 $I->wait(1);
                 $I->moveMouseOver('//*[@id="wrap"]');
                 //$I->waitForElement('//*[@class="cloud-zoom-big"]');
@@ -88,7 +91,7 @@ class ProductSteps extends \AcceptanceTester
             $I->waitForElement('//div[@class="more-views ma-more-img"]/ul/li[1]/a/img');
             $I->click('//div[@class="more-views ma-more-img"]/ul/li[1]/a/img');
             $I->click('//*[@id="wrap"]');
-            $I->waitForElementVisible('//a[@id="bottomNavClose"]',30);
+            $I->waitForElementVisible('//a[@id="bottomNavClose"]', 30);
             $I->click('//a[@id="bottomNavClose"]');
 
         }
@@ -99,13 +102,16 @@ class ProductSteps extends \AcceptanceTester
     {
         $I = $this;
         $I->checkInRandomOrder();
+
         $countLinks = count($I->grabMultiple('//*[@class="product-tabs"]/li'));
-        for($c=1; $c<=$countLinks; $c++) {
-            $I->click('//*[@class="product-tabs"]/li['.$c.']/a');
+        for ($c = 1; $c <= $countLinks; $c++) {
+            $I->click('//*[@class="product-tabs"]/li[' . $c . ']/a');
         }
+
     }
 
-    public function moduleSize (){
+    public function moduleSize()
+    {
         $I = $this;
         $I->click('#product-options-right > div > a');
         $I->executeInSelenium(function (\Facebook\WebDriver\Remote\RemoteWebDriver $webdriver) {
@@ -118,7 +124,7 @@ class ProductSteps extends \AcceptanceTester
         $I->getVisibleText('Length (inch)');
 
         $I->waitForElementVisible('#size-guide > h2');
-        $I->see('SIZING GUIDE:','#size-guide > h2');
+        $I->see('SIZING GUIDE:', '#size-guide > h2');
         $I->click('#sizechart-notice > a');
         $I->waitForElementVisible('div.well > p:nth-of-type(5) > a');
         $I->click('div.well > p:nth-of-type(5) > a');
@@ -128,7 +134,7 @@ class ProductSteps extends \AcceptanceTester
             $webdriver->switchTo()->window($last_window);
         });
         $I->waitForElementVisible('//div[@class="page-title"]/h1');
-        $I->see('Sizing Guide','h1');
+        $I->see('Sizing Guide', 'h1');
 
     }
 
@@ -136,35 +142,15 @@ class ProductSteps extends \AcceptanceTester
     {
         $I = $this;
 
-       // $I->checkInRandomOrderBottoms();
-        $I->amOnPage('/studio-d-artisan-sd007-14oz-left-hand-twill-super-tight-straight.html');
-        $size = count($I->grabMultiple('//dd[@class="last"]/div/select/option'));
-        $type = count($I->grabMultiple('//*[@id="product-options-left"]/dl/dd/div/select/option'));
-        $union = count($I->grabMultiple('//select[@id="hemming-req-select"]/option'));
-        $sub = count($I->grabMultiple('//div[@class="amxnotif-block"]/button'));
+        $I->checkInRandomOrder();
 
+        $I->wait(2);
+        $I->waitForElement('//div[@class="row product-options"]');
+        $test = $I->grabTextFrom('//*[@class="input-box"]/select');
 
-        if ($union > 1) {
+          $I->click('//*[@class="input-box"]/select/option[2]');
 
-            $I->click('//*[@id="product-options-left"]/dl/dd/div/select');
-            $I->waitForElementVisible('//*[@id="product-options-left"]/dl/dd/div/select/option[2]');
-            $I->click('//*[@id="product-options-left"]/dl/dd/div/select/option[2]');
-
-            $I->getVisibleText('//dd[@class="last"]/div/select/option', 'Choose an Option...');
-
-            $I->click('//dd[@class="last"]/div/select/option');
-            $I->waitForElementVisible('//dd[@class="last"]/div/select/option[2]');
-            $I->click('//dd[@class="last"]/div/select/option[2]');
-
-            $I->getVisibleText('//select[@id="hemming-req-select"]/option', 'No');
-
-            $I->click('//select[@id="hemming-req-select"]/option');
-            $I->waitForElementVisible('//select[@id="hemming-req-select"]/option[2]');
-            $I->click('//select[@id="hemming-req-select"]/option[2]');
-            $I->moduleSize();
-
-        } else {
-
+/*
             $I->click('//div[@class="amxnotif-block"]/button');
             $I->seeElement('div.validation-advice');
             $I->fillField('//input[@name="guest_email"]', 'johndoe@domain.com');
@@ -175,8 +161,9 @@ class ProductSteps extends \AcceptanceTester
             } else {
                 $I->see('Alert subscription has been saved.', '//ul[@class="messages"]');
             }
+*/
         }
-    }
+
 
 
 

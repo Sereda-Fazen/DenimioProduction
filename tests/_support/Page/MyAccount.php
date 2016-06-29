@@ -405,17 +405,24 @@ class MyAccount
         $I->click(self::$add);
         $I->fillField(self::$enterGiftCard, $giftCard);
         $I->click(self::$addToMyList);
-        $I->see('The gift code has been added to your list successfully.',self::$success );
-
+        try {
+            $I->see('The gift code has been added to your list successfully.', self::$success);
+        } catch (Exception $e) {
+            $I->see('Gift card "GIFT-ADFA-12NF0O" is invalid.', self::$error);
+            $I->reloadPage();
+        }
     }
 
     public function removeGiftCard(){
         $I = $this->tester;
-        $I->waitForElement(self::$remove);
-        $I->click(self::$remove);
-        $I->acceptPopup();
-        $I->waitForElement(self::$success);
-
+        try {
+            $I->waitForElement(self::$remove);
+            $I->click(self::$remove);
+            $I->acceptPopup();
+            $I->waitForElement(self::$success);
+        } catch (Exception $e) {
+            $I->waitForText('There are no items matching this selection.');
+        }
     }
 
 

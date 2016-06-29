@@ -106,16 +106,13 @@ class CategorySteps extends \AcceptanceTester
                 $I->seeElement('//*[@class="limiter hidden-xs"]');
 
 
-
                 $I->click('//div[@class="pages"]/ol/li[' . rand(2, $pages) . ']/a');
                 $I->waitForAjax(40);
                 $I->seeElement('//*[@class="limiter hidden-xs"]');
                 $I->wait(2);
 
             }
-        $I->click('//i[@class="fa fa-long-arrow-up"]');
-        $I->waitForAjax(40);
-        $I->seeElement('//*[@class="limiter hidden-xs"]');
+
 
     }
 

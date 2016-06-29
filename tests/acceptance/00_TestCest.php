@@ -6,11 +6,10 @@ use \Step\Acceptance;
  */
 class TestCest
 {
-    function enterNewPass (Step\Acceptance\ForgotPassSteps $I)
+    function checkSelectSizeForBottoms(\Page\Product $productPage, \Step\Acceptance\ProductSteps $I)
     {
-        $I->gMailAuth();
-        $I->remoteWindow();
-        $I->newPass();
+        $I->checkSelectSizeForBottoms();
     }
+
 }
 

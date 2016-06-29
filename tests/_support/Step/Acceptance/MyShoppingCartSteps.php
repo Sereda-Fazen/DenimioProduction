@@ -101,7 +101,7 @@ class MyShoppingCartSteps extends \AcceptanceTester
         $I->fillField('#giftvoucher_code','test');
         $I->click('//div[@class="input-box"]/button/span');
         $I->see('Gift card "test" is invalid.','li.error-msg');
-
+/*
         $I->fillField('#giftvoucher_code','GIFT-ADFA-12NF0O');
         $I->click('//div[@class="input-box"]/button/span');
         $I->see('Gift code "GIFT-XXXX-XXXXXX" has been applied successfully.' ,'li.success-msg');
@@ -113,7 +113,7 @@ class MyShoppingCartSteps extends \AcceptanceTester
 
         $I->click('#giftvoucher');
         $I->see('Your Gift Card information has been removed successfully.' ,'li.success-msg');
-
+*/
     }
 
     public function checkEstimateShippingAndTax(){

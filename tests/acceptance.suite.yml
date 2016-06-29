@@ -7,7 +7,7 @@ modules:
 
     config:
         WebDriver:
-            url: 'https://staging:prospect@dev8.denimio.com'
+            url: 'https://www.denimio.com/'
             browser: chrome
 
             window_size: 1980x1780
@@ -45,7 +45,7 @@ modules:
 
 env:
 
-  DEV_8:
+  PRODUCTION:
 
   DEV_PROD_FR:
     modules:
@@ -90,54 +90,7 @@ env:
 
 
 
-  PROD:
-    modules:
-          config:
-            WebDriver:
-              url: 'https://www.denimio.com/'
 
-
-  DEV_2:
-    modules:
-      config:
-        WebDriver:
-          url: 'http://staging:prospect@dev2.denimio.com'
-
-  DEV_3:
-    modules:
-      config:
-        WebDriver:
-          url: 'https://staging:prospect@dev3.denimio.com'
-
-  DEV_4:
-    modules:
-      config:
-        WebDriver:
-          url: 'http://staging:prospect@dev4.denimio.com'
-
-  DEV_5:
-    modules:
-      config:
-        WebDriver:
-          url: 'http://staging:prospect@dev5.denimio.com'
-
-  DEV_6:
-    modules:
-      config:
-        WebDriver:
-          url: 'http://staging:prospect@dev6.denimio.com'
-
-  DEV_7:
-    modules:
-      config:
-        WebDriver:
-          url: 'http://staging:prospect@dev7.denimio.com'
-
-  DEV_9:
-    modules:
-      config:
-        WebDriver:
-          url: 'http://staging:prospect@dev9.denimio.com'
 
   DEV_PROW:
     modules:
@@ -158,9 +111,6 @@ env:
            #browserstack.user: 'vladshalda1'
            #browserstack.key: 'vMqut6yLFsfbhDzhB643'
            resolution:  1920x1080
-
-
-
 
 
 
