@@ -30,7 +30,7 @@ class ProductSteps extends \AcceptanceTester
         $I = $this;
         $I->checkTops();
         $I->wait(2);
-        $I->click('//div[@class="category-products"]/ul[' . rand(1, 10) . ']/li[' . rand(1, 4) . ']/div/div/a/img');
+        $I->click('//div[@class="category-products"]/ul[' . rand(1, 5) . ']/li[' . rand(1, 4) . ']/div/div/a/img');
         $I->seeElement('//div[@class="product-essential"]/form/div[1]/div[2]');
 
     }
@@ -66,7 +66,6 @@ class ProductSteps extends \AcceptanceTester
     {
         $I = $this;
         $I->checkInRandomOrder();
-        // $I->amOnPage('/studio-d-artisan-5535-crazy-pattern-check-work-shirt.html');
         $test2 = count($I->grabMultiple('//div[@class="more-views ma-thumbnail-container"]/div/div/ul/li'));
         $I->wait(3);
         if ($test2 > 4) {

@@ -6,9 +6,10 @@ use \Step\Acceptance;
  */
 class TestCest
 {
-    function checkSelectSizeForBottoms(\Page\Product $productPage, \Step\Acceptance\ProductSteps $I)
+    function ECGikenPriceModule(\Page\Extensions $extensionsPage, \Step\Acceptance\ExtensionsSteps $I)
     {
-        $I->checkSelectSizeForBottoms();
+        $extensionsPage->priceModule();
+        $I->getCurrency();
     }
 
 }
