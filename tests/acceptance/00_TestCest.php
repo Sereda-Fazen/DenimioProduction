@@ -6,10 +6,11 @@ use \Step\Acceptance;
  */
 class TestCest
 {
-    function ECGikenPriceModule(\Page\Extensions $extensionsPage, \Step\Acceptance\ExtensionsSteps $I)
-    {
-        $extensionsPage->priceModule();
-        $I->getCurrency();
+    function MyWishList(Step\Acceptance\LoginSteps $I, \Page\MyAccount $MyAccountPage) {
+
+        $I->login();
+        $MyAccountPage->accountMyWishList();
+
     }
 
 }

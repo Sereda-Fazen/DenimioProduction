@@ -11,7 +11,7 @@ class CTestCest {
         $loginPage->login();
         $loginPage->loginInvalid('denimio_test@yahoo.com', '123456');
         $I->see('From your My Account Dashboard you have the ability to view','div.welcome-msg');
-        $loginPage->logout();
+
     }
 
 

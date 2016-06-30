@@ -315,6 +315,19 @@ class MyAccount
     public function accountMyWishList() {
         $I = $this->tester;
         $I->click(self::$myWishList);
+        $w = $I->grabTextFrom('//div[@class="my-wishlist"]');
+        if (preg_match('/You have no items in your wishlist./i', $w) == 1) {
+            $I->click(self::$back);
+        } else{
+            $I->see('PRODUCT DETAILS AND COMMENT', '//*[@id="wishlist-table"]//tr/th[2]');
+            $I->reloadPage();
+            $I->click('//*[@id="wishlist-table"]//tbody//td[4]/a');
+            $I->acceptPopup();
+            $I->getVisibleText('You have no items in your wishlist.');
+        }
+
+
+        /*
         try {$I->getVisibleText('You have no items in your wishlist.');
             $I->click(self::$back);
         } catch (Exception $e) {
@@ -322,6 +335,7 @@ class MyAccount
             $I->click(self::$back);
 
         }
+        */
     }
 
 

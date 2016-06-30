@@ -7,40 +7,10 @@ modules:
 
     config:
         WebDriver:
-            url: 'https://www.denimio.com/'
-            browser: chrome
+          browser: chrome
+          window_size: 1980x1080
+          url: "http://denimio.com"
 
-            window_size: 1980x1780
-            restart: false
-
-
-            # --run in browserstack--
-
-            #host: 'hub.browserstack.com'
-            #port: 80
-
-            browser: chrome
-
-
-            restart: false
-            #wait: 13
-            #clear_cookies: false
-
-            capabilities:
-             browserstack.autoWait: 60
-             browserstack.user: 'mahotoharada1'
-             browserstack.key: 'UYCHp6jL5gei8WxtKVjY'
-             #browserstack.user: 'vladshalda1'
-             #browserstack.key: 'vMqut6yLFsfbhDzhB643'
-             resolution:  1920x1080
-
-
-             browserstack.debug: 'true'
-             #applicationCacheEnabled: false
-             unexpectedAlertBehaviour: 'accept'
-             pageLoadStrategy: 'eager'
-             os: 'WINDOWS'
-             os_version: 7
 
 
 env:
@@ -120,3 +90,9 @@ env:
         config:
           WebDriver:
             url: 'http://browserstack.com/automate'
+
+  BROWSER:
+        modules:
+          config:
+            WebDriver:
+              url: 'http://browserstack.com/automate'

@@ -1,6 +1,6 @@
 <?php
 namespace Step\Acceptance;
-use Exception;
+
 class AdminSteps extends \AcceptanceTester
 {
 

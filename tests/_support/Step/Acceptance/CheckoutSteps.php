@@ -103,11 +103,9 @@ class CheckoutSteps extends \AcceptanceTester
         $I->click('//*[@id="edit_shipping_document_confirmation"]/option[4]');
         $I->click('#onestepcheckout-button-place-order');
         $I->waitForElement('li.error-msg');
-       //$I->see('Network Error, E02004', '//li[@class="error-msg"]');
-        try {
-            $I->waitForText('The requested Payment Method is not available.!');
-        } catch (Exception $e){$I->waitForText('Authorization process has an error');}
-        $I->resetCookie('rCookie');
+        $I->checkMessageError();
+
+
 
         
 
