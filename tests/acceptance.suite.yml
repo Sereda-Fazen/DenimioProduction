@@ -9,7 +9,7 @@ modules:
         WebDriver:
           browser: chrome
           window_size: 1980x1080
-          url: "http://denimio.com"
+          url: "http://denimio.com/"
           #host: 'hub.browserstack.com'
           #port: 80
           capabilities:

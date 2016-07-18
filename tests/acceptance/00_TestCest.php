@@ -6,11 +6,10 @@ use \Step\Acceptance;
  */
 class TestCest
 {
-    function MyNewsletter(\Page\MyAccount $MyAccountPage,\Helper\Acceptance $I)
+    function invalidURL(Step\Acceptance\LoginSteps $I, \Page\HomePage $homePage)
     {
-        $I->login();
-        $MyAccountPage->accountNewsletterSave();
-        $MyAccountPage->accountNewsletterDelete();
+        $homePage->home();
+        $homePage->invalidURL();
     }
 
 }

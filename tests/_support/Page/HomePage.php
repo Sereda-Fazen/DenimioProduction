@@ -6,6 +6,7 @@ class HomePage
     public static $URL = '/';
     public static $URL2 = '/customer/account/login/';
     public static $URL3 = '/top.html';
+    public static $wrong = '/testWrong/';
 
     public static $invalidUrl = 'div.std';
     public static $backHomePage = 'ul.disc > li:first-child > a';
@@ -77,7 +78,7 @@ class HomePage
 
     public  function invalidURL(){
         $I = $this->tester;
-        $I->amOnPage('/testWrong/');
+        $I->amOnUrl('https://www.denimio.com/testWrong');
         $I->waitForElement('h3',3);
         $I->see('WHOOPS, OUR BAD...',self::$invalidUrl);
         $I->click(self::$backHomePage);
