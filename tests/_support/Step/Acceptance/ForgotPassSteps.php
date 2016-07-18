@@ -10,22 +10,22 @@ class ForgotPassSteps extends \AcceptanceTester
     {
         $I = $this;
         $I->amOnUrl("https://mail.yahoo.com");
-
-        $pass = count($I->grabMultiple('//*[@id="login-passwd"]'));
         $I->fillField('//*[@id="login-username"]', 'denimio_test@yahoo.com');
+        $I->click('//*[@id="login-signin"]');
+        $I->waitForElementVisible('//*[@id="login-passwd"]');
+        $I->fillField('//*[@id="login-passwd"]', 'fJ4qEn5Y');
+        $I->click('//*[@id="login-signin"]');
+    }
 
-            $I->click('//*[@id="login-signin"]');
-            //$I->seeElement('//div[@id="mbr-login-error"]');
-            $I->waitForElementVisible('//*[@id="login-passwd"]');
-            $I->fillField('//*[@id="login-passwd"]', 'fJ4qEn5Y');
-            $I->click('//*[@id="login-signin"]');
-
-            $I->waitForElement('//div[contains(@class, "unread")]/div/div[contains(@title,"denimio.com")]/../div/span[contains(text(),"Password")]');
+    public function checkLetter()
+    {
+        $I = $this;
+        $I->waitForElement('//div[contains(@class, "unread")]/div/div[contains(@title,"denimio.com")]/../div/span[contains(text(),"Password")]');
+        $I->click('//div[contains(@class, "unread")]/div/div[contains(@title,"denimio.com")]/../div/span[contains(text(),"Password")]');
+        try {
+            $I->wait(2);
             $I->click('//div[contains(@class, "unread")]/div/div[contains(@title,"denimio.com")]/../div/span[contains(text(),"Password")]');
-            try {
-                $I->wait(2);
-                $I->click('//div[contains(@class, "unread")]/div/div[contains(@title,"denimio.com")]/../div/span[contains(text(),"Password")]');
-            } catch (Exception $e) {}
+        } catch (Exception $e) {}
             
 
 

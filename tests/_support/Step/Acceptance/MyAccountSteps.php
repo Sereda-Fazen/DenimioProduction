@@ -6,6 +6,25 @@ use Exception;
 class MyAccountSteps extends \AcceptanceTester
 {
 
+    public function gMailAuthWishlist()
+    {
+        $I = $this;
+        $I->amOnUrl("https://mail.yahoo.com");
+        $I->fillField('//*[@id="login-username"]', 'denimio_test@yahoo.com');
+        $I->click('//*[@id="login-signin"]');
+        $I->waitForElementVisible('//*[@id="login-passwd"]');
+        $I->fillField('//*[@id="login-passwd"]', 'fJ4qEn5Y');
+        $I->click('//*[@id="login-signin"]');
+
+        $I->waitForElement('//div[contains(@class, "unread")]/div/div[contains(@title,"denimio.com")]/../div/span[contains(text(),"Take")]');
+        $I->click('//div[contains(@class, "unread")]/div/div[contains(@title,"denimio.com")]/../div/span[contains(text(),"Take")]');
+        $I->waitForText('Take a look at my wishlist from Denimio.');
+        $I->waitForElement('//*[@class="icon-delete"]');
+        $I->waitForElementNotVisible('//div[contains(@class, "unread")]/div/div[contains(@title,"denimio.com")]/../div/span[contains(text(),"Take")]');
+        
+    }
+
+
     public function getCloseSub(){
         $I = $this;
 
@@ -18,19 +37,16 @@ class MyAccountSteps extends \AcceptanceTester
     public function login()
     {
         $I = $this;
-        $I->amOnPage('/customer/account/login/');
-        $I->getCloseSub();
+        $I->amOnPage('/');
+        $I->waitForElement('//li[@class="dropit-trigger"]/a');
+        $I->click('//li[@class="dropit-trigger"]/a');
+        $I->waitForElement('#email');
         $I->fillField('#email', 'denimio_test@yahoo.com');
         $I->fillField('#pass', '123456');
         $I->click('Login');
         $I->see('From your My Account Dashboard','div.welcome-msg > p:nth-of-type(2)');
     }
-    public function test()
-    {
-        $I = $this;
-        $I->amOnPage('/');
-       $I->wait(10);
-    }
+
 
     public function waitAlertWindow ()
     {
@@ -70,24 +86,22 @@ class MyAccountSteps extends \AcceptanceTester
     }
 
 
-    public function additionItemInList(){
+    public function additionItemInList()
+    {
         $I = $this;
         $I->checkTops();
         //$blockJeans = rand(1,count($I->grabMultiple('//div[@class="category-products"]/ul[1]/li')));
-       // $blockJeans2 = rand(1,count($I->grabMultiple('//div[@class="category-products"]/ul')));
+        // $blockJeans2 = rand(1,count($I->grabMultiple('//div[@class="category-products"]/ul')));
 
         for ($w = 1; $w <= 2; $w++) {
-            $I->moveMouseOver('//div[@class="category-products"]/ul[1]/li['.$w.']/div/div');
+            $I->moveMouseOver('//div[@class="category-products"]/ul[1]/li[' . $w . ']/div/div');
             $I->wait(2);
-            $I->click('//div[@class="category-products"]/ul[1]/li['.$w.']//li[2]');
+            $I->click('//div[@class="category-products"]/ul[1]/li[' . $w . ']//li[2]');
             $I->waitForAjax(40);
 
-            $I->waitForElement('//a[@id="continue_shopping"]',30);
+            $I->waitForElement('//a[@id="continue_shopping"]', 30);
+            $I->reloadPage();
 
-            try {
-                $I->click('//a[@id="continue_shopping"]');
-                $I->reloadPage();
-            }catch (Exception $e){}
         }
 
         $I->moveMouseOver('//*[@class="dropit-trigger"]');
@@ -102,7 +116,7 @@ class MyAccountSteps extends \AcceptanceTester
         $I->click('//*[@name="do"]/span');
 
         $I->click('//*[@class="button btn-add"]/span');
-        $I->see('Please specify the product\'s option(s) for ','li.error-msg');
+        $I->see('Please specify the product\'s option(s) for ', 'li.error-msg');
 
         $I->click('//*[@class="button btn-share"]/span');
         $I->waitForElement('div.fieldset');
@@ -111,22 +125,15 @@ class MyAccountSteps extends \AcceptanceTester
         $I->fillField('#message', 'test');
         $I->click('//*[@class="buttons-set form-buttons"]/button/span');
         $I->waitForElement('li.success-msg');
-        $I->see('Your Wishlist has been shared.','li.success-msg');
-
-        $I->clearItemFromList();
-
-
-
-
-
-
+        $I->see('Your Wishlist has been shared.', 'li.success-msg');
     }
 
-
-    public function clearItemFromList ()
-    {
+    public function removeItemWishlist(){
+        
         $I = $this;
         $count = count($I->grabMultiple('//*[@id="wishlist-table"]/tbody'));
+        $I->amOnPage('/wishlist');
+        $I->waitForElement('//*[@id="wishlist-table"]');
         for ($w = $count; $w > 0; $w--) {
             $I->click('//*[@id="wishlist-table"]/tbody/tr['.$w.']/td[4]/a');
             $I->acceptPopup();

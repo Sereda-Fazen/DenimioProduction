@@ -29,7 +29,7 @@ class CompareSteps extends \AcceptanceTester
             $I = $this;
             $I->amOnPage('/');
 
-            $I->click('//*[@class="parentMenu"]/a/span');
+            $I->click('//div[@class="pt_custommenu"]//span[text()="Tops"]');
             $I->waitForElementVisible('div.block-content > p.empty');
             $I->see('You have no items to compare.','div.block-content > p.empty');
 

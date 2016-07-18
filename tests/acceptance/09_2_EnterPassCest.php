@@ -8,6 +8,7 @@ class EnterPassCest {
     function enterNewPass (Step\Acceptance\ForgotPassSteps $I)
     {
         $I->gMailAuth();
+        $I->checkLetter();
         $I->remoteWindow();
         $I->newPass();
     }

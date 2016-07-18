@@ -16,9 +16,10 @@ class ExtensionsCest
         $extensionsPage->checkWallet();
     }
 
-    function ECGikenPriceModule(\Page\Extensions $extensionsPage)
+    function ECGikenPriceModule(\Page\Extensions $extensionsPage, \Step\Acceptance\ExtensionsSteps $I)
     {
         $extensionsPage->priceModule();
+        $I->getCurrency();
     }
 
     function paymentAddPointsUser (Step\Acceptance\CheckoutUserSteps $I, \Page\Checkout $userPage)

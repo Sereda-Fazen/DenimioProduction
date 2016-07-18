@@ -88,6 +88,8 @@ class Acceptance extends \Codeception\Module
         $this->assertGreaterThanOrEqual($minSizeXY, $realSizeX);
         $this->assertGreaterThanOrEqual($minSizeXY, $realSizeY);
     }
+    
+    
 
 
 

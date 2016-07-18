@@ -6,11 +6,14 @@ use \Step\Acceptance;
  */
 class TestCest
 {
-    function MyWishList(Step\Acceptance\LoginSteps $I, \Page\MyAccount $MyAccountPage) {
+    function checkRemoveItemFromComparePage(\Page\Compare $blogPage, \Step\Acceptance\CompareSteps $I)
+    {
+        $I->removeItemFromComparePage();
+    }
 
-        $I->login();
-        $MyAccountPage->accountMyWishList();
-
+    function checkRemoveItemFromCategoryPage(\Page\Compare $blogPage, \Step\Acceptance\CompareSteps $I)
+    {
+        $I->removeItemFromCategory();
     }
 
 }

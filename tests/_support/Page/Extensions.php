@@ -140,6 +140,7 @@ class Extensions
         $I->waitForElementVisible(self::$checkoutHeader);
         $I->click(self::$checkoutHeader);
         $I->see('$',self::$orderReview);
+        $I->waitForElementNotVisible('//div[@class="ajax-loader3"]',20);
         $I->see('$',self::$grandTotal);
         $I->see('¥',self::$charge);
     }
