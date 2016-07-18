@@ -125,12 +125,12 @@ class LoginSteps extends \AcceptanceTester
         $I->fillField('#confirmation', '123456');
         $I->click('Reset a Password');
         $I->see('Your password has been updated.', 'li.success-msg');
+
     }
 
 
     public function removeMsgs(){
         $I = $this;
-        $I->amOnUrl('https://mail.yahoo.com');
         $I->waitForElement('//*[@id="btn-ml-cbox"]//input');
         $I->click('//*[@id="btn-ml-cbox"]//input');
         $I->seeCheckboxIsChecked('//*[@id="btn-ml-cbox"]//input');

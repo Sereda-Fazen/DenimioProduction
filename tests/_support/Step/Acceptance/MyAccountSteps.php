@@ -6,23 +6,7 @@ use Exception;
 class MyAccountSteps extends \AcceptanceTester
 {
 
-    public function gMailAuthWishlist()
-    {
-        $I = $this;
-        $I->amOnUrl("https://mail.yahoo.com");
-        $I->fillField('//*[@id="login-username"]', 'denimio_test@yahoo.com');
-        $I->click('//*[@id="login-signin"]');
-        $I->waitForElementVisible('//*[@id="login-passwd"]');
-        $I->fillField('//*[@id="login-passwd"]', 'fJ4qEn5Y');
-        $I->click('//*[@id="login-signin"]');
 
-        $I->waitForElement('//div[contains(@class, "unread")]/div/div[contains(@title,"denimio.com")]/../div/span[contains(text(),"Take")]');
-        $I->click('//div[contains(@class, "unread")]/div/div[contains(@title,"denimio.com")]/../div/span[contains(text(),"Take")]');
-        $I->waitForText('Take a look at my wishlist from Denimio.');
-        $I->waitForElement('//*[@class="icon-delete"]');
-        $I->waitForElementNotVisible('//div[contains(@class, "unread")]/div/div[contains(@title,"denimio.com")]/../div/span[contains(text(),"Take")]');
-        
-    }
 
 
     public function getCloseSub(){
@@ -126,13 +110,14 @@ class MyAccountSteps extends \AcceptanceTester
         $I->click('//*[@class="buttons-set form-buttons"]/button/span');
         $I->waitForElement('li.success-msg');
         $I->see('Your Wishlist has been shared.', 'li.success-msg');
+
+
     }
 
     public function removeItemWishlist(){
         
         $I = $this;
         $count = count($I->grabMultiple('//*[@id="wishlist-table"]/tbody'));
-        $I->amOnPage('/wishlist');
         $I->waitForElement('//*[@id="wishlist-table"]');
         for ($w = $count; $w > 0; $w--) {
             $I->click('//*[@id="wishlist-table"]/tbody/tr['.$w.']/td[4]/a');

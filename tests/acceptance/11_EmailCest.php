@@ -8,12 +8,21 @@ use Step\Acceptance;
 class EmailCest
 {
 
-    function checkEmailMessage(\Step\Acceptance\LoginSteps $I)
+    function checkEmailNewsletters(\Step\Acceptance\LoginSteps $I)
     {
         $I->gMailAuth();
         $I->checkNewsletterMsg();
+    }
+    function checkEmailWishlist(\Step\Acceptance\LoginSteps $I)
+    {
         $I->checkWishlist();
+    }
+    function checkEmailNewPassword(\Step\Acceptance\LoginSteps $I)
+    {
         $I->checkNewPassword();
+    }
+    function removeAllMessage(\Step\Acceptance\LoginSteps $I){
+        $I->gMailAuth();
         $I->removeMsgs();
     }
         
