@@ -55,7 +55,6 @@ class Category
     public function checkInputPrices($leftPrice, $rightPrice)
     {
         $I = $this->tester;
-
         //$I->amOnPage('/');
         //$I->click('//div[@class="parentMenu"]//span');
         //$I->seeElement('//div[@class="category-products"]');
