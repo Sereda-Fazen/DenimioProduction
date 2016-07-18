@@ -13,14 +13,13 @@ class RegistrationCest
     }
 
     function registerInvalidEmail(AcceptanceTester $I, \Page\Registration $registerPage) {
-        $registerPage->registerCreate();
+        $registerPage->register();
         $registerPage->registerInvalid('alex', 'sereda','dasas@sd.rty','123456','123456');
         $I->see('There is already an account with this email address.','li.error-msg');
         $I->comment('Expected result: "Email" is not a valid hostname.');
     }
 
     function registerWrongEmail(AcceptanceTester $I, \Page\Registration $registerPage) {
-
         $registerPage->registerInvalid('alex', 'sereda','sereda222.com','123456','123456');
         $I->see('Please enter a valid email address. For example johndoe@domain.com.','#advice-validate-email-email_address');
         $I->comment('Expected result: Please enter a valid email address');

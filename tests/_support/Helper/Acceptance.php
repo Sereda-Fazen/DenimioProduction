@@ -88,8 +88,29 @@ class Acceptance extends \Codeception\Module
         $this->assertGreaterThanOrEqual($minSizeXY, $realSizeX);
         $this->assertGreaterThanOrEqual($minSizeXY, $realSizeY);
     }
-    
-    
+
+    public function gMailAuth()
+    {
+        $I = $wb = $this->getModule('WebDriver');
+        $I->amOnUrl("https://mail.yahoo.com");
+        $I->fillField('//*[@id="login-username"]', 'denimio_test@yahoo.com');
+        $I->click('//*[@id="login-signin"]');
+        $I->waitForElementVisible('//*[@id="login-passwd"]');
+        $I->fillField('//*[@id="login-passwd"]', 'fJ4qEn5Y');
+        $I->click('//*[@id="login-signin"]');
+    }
+
+    public function login()
+    {
+        $I = $wb = $this->getModule('WebDriver');
+        $I->amOnPage('/');
+        $I->click('//a[@class="login_click"]');
+        $I->waitForElement('#email');
+        $I->fillField('#email', 'denimio_test@yahoo.com');
+        $I->fillField('#pass', '123456');
+        $I->click('Login');
+        $I->see('From your My Account Dashboard','div.welcome-msg > p:nth-of-type(2)');
+    }
 
 
 

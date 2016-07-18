@@ -4,7 +4,7 @@ namespace Page;
 class Calendar
 {
 
-    public static $URL = '/events/';
+    public static $URL = 'https://www.denimio.com/events';
     public static $rightArrow = '//*[@class="fc-button fc-button-next fc-state-default fc-corner-right"]';
     public static $leftArrow = '//span[@class="fc-button-effect"]';
     public static $today = '//*[@class="fc-button fc-button-today fc-state-default fc-corner-left fc-corner-right fc-state-disabled"]';
@@ -27,9 +27,9 @@ class Calendar
 
     public function calendar(){
         $I = $this->tester;
-        $I->amOnPage(self::$URL);
+        $I->amOnUrl(self::$URL);
 
-        $I->waitForElementVisible(self::$today);
+        $I->waitForElement(self::$today);
 
         $I->click(self::$rightArrow);
         $I->wait(1);

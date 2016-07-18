@@ -6,14 +6,11 @@ use \Step\Acceptance;
  */
 class TestCest
 {
-    function checkRemoveItemFromComparePage(\Page\Compare $blogPage, \Step\Acceptance\CompareSteps $I)
+    function MyNewsletter(\Page\MyAccount $MyAccountPage,\Helper\Acceptance $I)
     {
-        $I->removeItemFromComparePage();
-    }
-
-    function checkRemoveItemFromCategoryPage(\Page\Compare $blogPage, \Step\Acceptance\CompareSteps $I)
-    {
-        $I->removeItemFromCategory();
+        $I->login();
+        $MyAccountPage->accountNewsletterSave();
+        $MyAccountPage->accountNewsletterDelete();
     }
 
 }

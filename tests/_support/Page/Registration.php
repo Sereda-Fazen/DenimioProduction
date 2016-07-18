@@ -6,7 +6,7 @@ use Exception;
 class Registration
 {
 
-    public static $URL = '/customer/account/login/';
+    public static $URL = '/';
     public static $logIn = '//a[@class="login_click"]';
     public static $createAccount = 'div.new-users > div.buttons-set > button.button > span > span';
     public static $firsName = '#firstname';
@@ -15,7 +15,7 @@ class Registration
     public static $subscription = '#is_subscribed';
     public static $pass = '#password';
     public static $confirmation = '#confirmation';
-    public static $submit = 'Submit';
+    public static $submit = '//div[@class="buttons-set"]//button//span[text()="Submit"]';
     public static $logout = 'li.dropit-trigger > a';
     protected $tester;
     public function __construct(\AcceptanceTester $I)
@@ -32,7 +32,7 @@ class Registration
         $I->click(self::$subscription);
         $I->fillField(self::$pass, $pass1);
         $I->fillField(self::$confirmation, $pass2);
-
+        $I->waitForElement(self::$submit);
         $I->click(self::$submit);
         return $this;
     }
@@ -41,18 +41,13 @@ class Registration
         $I = $this->tester;
 
         $I->amOnPage(self::$URL);
-        try { $I->waitForElement('i.mc_embed_close.fa.fa-times.disabled-start');$I->click('i.mc_embed_close.fa.fa-times.disabled-start'); } catch (Exception $e) {}
-        $I->wait(2);
+        $I->waitForElement(self::$logIn);
+        $I->click(self::$logIn);
+        $I->waitForElement(self::$createAccount);
         $I->click(self::$createAccount);
 
     }
-
-    public function registerCreate(){
-        $I = $this->tester;
-
-        $I->click(self::$createAccount);
-
-    }
+    
 
     public function logout()
     {

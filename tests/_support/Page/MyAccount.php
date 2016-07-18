@@ -92,6 +92,7 @@ class MyAccount
     public static $buttonSave = '//div[@class="my-account"]//button//span[text()="Save"]';
     public static $clickCheck = '#subscription';
 
+
     /**
      * My Out of Stock
      */
@@ -342,23 +343,21 @@ class MyAccount
     public function accountNewsletterSave() {
         $I = $this->tester;
         $I->click(self::$newsletter);
+        $I->dontSeeCheckboxIsChecked(self::$clickCheck);
+        $I->click(self::$clickCheck);
         $I->click(self::$buttonSave);
         $I->see('The subscription has been saved.', self::$success);
+        
     }
+
     public function accountNewsletterDelete() {
         $I = $this->tester;
+        $I->waitForElement(self::$newsletter);
         $I->click(self::$newsletter);
+        $I->seeCheckboxIsChecked(self::$clickCheck);
         $I->click(self::$clickCheck);
         $I->click(self::$buttonSave);
         $I->see('The subscription has been removed.', self::$success);
-    }
-
-    public function accountNewsletterDefault() {
-        $I = $this->tester;
-        $I->click(self::$newsletter);
-        $I->click(self::$clickCheck);
-        $I->click(self::$buttonSave);
-        $I->see('The subscription has been saved.', self::$success);
     }
 
 
@@ -380,22 +379,31 @@ class MyAccount
     public function accountXX012ContestAdd()
     {
         $I = $this->tester;
-        $I->click(self::$XX012Contest);
-        $I->click(self::$agree);
-        $I->seeElement(self::$validAgree);
+        $contest = count($I->grabAttributeFrom('//div[@class="block-content"]//li', 'XX012 Contest'));
+        if ($contest == true) {
+            $I->click(self::$XX012Contest);
+            $I->click(self::$agree);
+            $I->seeElement(self::$validAgree);
 
-        $I->click(self::$selectAgree);
-        $I->click(self::$agree);
-        $I->getVisibleText('Click Browse and choose a file from your computer to upload.');
+            $I->dontSeeCheckboxIsChecked(self::$selectAgree);
+            $I->click(self::$selectAgree);
+            $I->seeCheckboxIsChecked(self::$selectAgree);
+            $I->click(self::$agree);
+            $I->getVisibleText('Click Browse and choose a file from your computer to upload.');
+
+            $I->waitForElement(self::$browse);
+            $I->click(self::$deleteContest);
+            $I->acceptPopup();
+            $I->see('Your XX012 Contest account was successfully deleted', self::$success);
+        } else {
+            $I->waitForElementNotVisible(self::$XX012Contest);
+
+        }
     }
 
-    public function accountXX012ContestDelete() {
-        $I = $this->tester;
-        $I->waitForElement(self::$browse);
-        $I->click(self::$deleteContest);
-        $I->acceptPopup();
-        $I->see('Your XX012 Contest account was successfully deleted', self::$success);
-    }
+
+
+
 
 
 

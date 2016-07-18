@@ -6,7 +6,9 @@ use Exception;
 class Blog
 {
 
-    public static $URL = '/blog/';
+    public static $URL = '/';
+    public static $moveLogIn = '//*[@class="dropit-trigger"]';
+    public static $clickBlog = '//*[@class="dropit-trigger"]//ul/li/a[text()="Blog"]';
     public static $cat = '#wp-category-list > li:nth-of-type(2) > a';
     public static $archives = '//ul[@id="wp-archive-list"]/li[1]';
     public static $seeArchives = 'div.post-list.row.js-masonry > div:nth-of-type(2) > div.post-date';
@@ -26,12 +28,13 @@ class Blog
     public function blog(){
         $I = $this->tester;
         $I->amOnPage(self::$URL);
-        
+        $I->moveMouseOver(self::$moveLogIn);
+        $I->waitForElement(self::$clickBlog);
+        $I->click(self::$clickBlog);
         //$I->seeElement('div.post-list.row.js-masonry > div:nth-of-type(2) > h2 > a');
         $I->waitForElement(self::$archives);
         $I->click(self::$archives);
         $I->seeElement(self::$seeArchives);
-        $I->amOnPage(self::$URL);
         $I->click(self::$title);
         $I->seeElement('div.page-titles.post-title > h1');
         $I->moveBack();

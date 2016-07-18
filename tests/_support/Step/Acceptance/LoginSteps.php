@@ -86,6 +86,79 @@ class LoginSteps extends \AcceptanceTester
         }
 
 
+    public function checkNewsletterMsg(){
+
+        $I = $this;
+        $I->waitForElement('//div[contains(@class, "unread")]/div/div[contains(@title,"denimio.com")]/../div/span[contains(text()," Newsletter subscription success ")]');
+        $I->waitForElement('//div[contains(@class, "unread")]/div/div[contains(@title,"denimio.com")]/../div/span[contains(text()," Newsletter unsubscription success ")]');
+    }
+
+    public function checkWishlist(){
+
+        $I = $this;
+        $I->waitForElement('//div[contains(@class, "unread")]/div/div[contains(@title,"denimio.com")]/../div/span[contains(text(),"wishlist")]');
+        $I->waitForElement('//div[contains(@class, "unread")]/div/div[contains(@title,"denimio.com")]/../div/span[contains(text(),"wishlist")]');
+    }
+
+
+
+
+
+    public function checkNewPassword(){
+
+        $I = $this;
+        $I->waitForElement('//div[contains(@class, "unread")]/div/div[contains(@title,"denimio.com")]/../div/span[contains(text(),"Password")]',30);
+        $I->click('//div[contains(@class, "unread")]/div/div[contains(@title,"denimio.com")]/../div/span[contains(text(),"Password")]');
+
+        $I->waitForElement('td > p:nth-of-type(2) > a');
+        $I->click('td > p:nth-of-type(2) > a');
+        $I->executeInSelenium(function (\Facebook\WebDriver\Remote\RemoteWebDriver $webdriver) {
+            $handles = $webdriver->getWindowHandles();
+            $last_window = end($handles);
+            $webdriver->switchTo()->window($last_window);
+        });
+
+        try {$I->waitForElementVisible('i.mc_embed_close.fa.fa-times.disabled-start'); $I->click('i.mc_embed_close.fa.fa-times.disabled-start'); } catch (Exception $e) {}
+        $I->wait(2);
+        $I->see('Reset a Password','h1');
+        $I->fillField('#password', '123456');
+        $I->fillField('#confirmation', '123456');
+        $I->click('Reset a Password');
+        $I->see('Your password has been updated.', 'li.success-msg');
+    }
+
+
+    public function removeMsgs(){
+        $I = $this;
+        $I->amOnUrl('https://mail.yahoo.com');
+        $I->waitForElement('//*[@id="btn-ml-cbox"]//input');
+        $I->click('//*[@id="btn-ml-cbox"]//input');
+        $I->seeCheckboxIsChecked('//*[@id="btn-ml-cbox"]//input');
+
+        $I->waitForElement('//*[@class="icon-text"][contains(text(),"Delete")]');
+        $I->click('//*[@class="icon-text"][contains(text(),"Delete")]');
+        try {
+            $I->waitForText('Your Inbox folder is empty');
+        } catch (Exception $e){}
+
+        
+        try {$I->waitForElement('//div[@id="modalOverlay"]//button');
+            $I->click('//div[@id="modalOverlay"]//button');} catch (Exception $e){}
+        $I->waitForText('Your Inbox folder is empty');
+
+
+        $I->waitForElement('//*[@class="icon-text"][contains(text(),"Delete")]');
+
+    }
+
+
+
+
+
+
+
+
+
 
 
 

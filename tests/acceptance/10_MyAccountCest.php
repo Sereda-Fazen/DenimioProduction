@@ -47,12 +47,11 @@ class MyAccountCest
  
     }
 
-    function MyNewsletter(Step\Acceptance\LoginSteps $I, \Page\MyAccount $MyAccountPage)
+    function MyNewsletter(Step\Acceptance\LoginSteps $I, \Page\MyAccount $MyAccountPage,\Helper\Acceptance $I)
     {
         $I->login();
         $MyAccountPage->accountNewsletterSave();
         $MyAccountPage->accountNewsletterDelete();
-        $MyAccountPage->accountNewsletterDefault();
     }
 
     function MyOutOfStock(Step\Acceptance\LoginSteps $I, \Page\MyAccount $MyAccountPage)
@@ -71,7 +70,7 @@ class MyAccountCest
     {
         $I->login();
         $MyAccountPage->accountXX012ContestAdd();
-        $MyAccountPage->accountXX012ContestDelete();
+        
     }
 
     function MyAccountGiftCard(Step\Acceptance\LoginSteps $I, \Page\MyAccount $MyAccountPage)

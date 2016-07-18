@@ -1,8 +1,6 @@
 <?php
 use \Step\Acceptance;
-/**
- * @group 1_password
- */
+
 class EnterPassCest {
     
     function enterNewPass (Step\Acceptance\ForgotPassSteps $I)
