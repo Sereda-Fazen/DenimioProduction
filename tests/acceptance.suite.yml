@@ -3,20 +3,27 @@ modules:
     enabled:
         - WebDriver
         - Helper\Acceptance
-
-
     config:
-        WebDriver:
+       WebDriver:
+          url: 'https://denimio.com'
           browser: chrome
-          window_size: 1980x1080
-          url: "http://denimio.com/"
-          #host: 'hub.browserstack.com'
-          #port: 80
+          window_size: 1980x1780
+          restart: false
+          host: 'hub.browserstack.com'
+          port: 80
+          browser: chrome
+          restart: false
           capabilities:
            browserstack.autoWait: 60
            browserstack.user: 'mahotoharada1'
            browserstack.key: 'UYCHp6jL5gei8WxtKVjY'
            resolution:  1920x1080
+           browserstack.debug: 'true'
+           #applicationCacheEnabled: false
+           unexpectedAlertBehaviour: 'accept'
+           pageLoadStrategy: 'eager'
+           os: 'WINDOWS'
+           os_version: 7
 
 
 
