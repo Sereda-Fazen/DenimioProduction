@@ -148,6 +148,8 @@ class LoginSteps extends \AcceptanceTester
 
 
         $I->waitForElement('//*[@class="icon-text"][contains(text(),"Delete")]');
+        $I->amOnPage('/');
+
 
     }
 

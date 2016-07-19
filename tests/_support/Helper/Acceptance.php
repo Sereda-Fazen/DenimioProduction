@@ -3,6 +3,8 @@ namespace Helper;
 // here you can define custom actions
 // all public methods declared in helper class will be available in $I
 
+use Exception;
+
 class Acceptance extends \Codeception\Module
 {
 
@@ -91,13 +93,16 @@ class Acceptance extends \Codeception\Module
 
     public function gMailAuth()
     {
-        $I = $wb = $this->getModule('WebDriver');
-        $I->amOnUrl("https://mail.yahoo.com");
-        $I->fillField('//*[@id="login-username"]', 'denimio_test@yahoo.com');
-        $I->click('//*[@id="login-signin"]');
-        $I->waitForElementVisible('//*[@id="login-passwd"]');
-        $I->fillField('//*[@id="login-passwd"]', 'fJ4qEn5Y');
-        $I->click('//*[@id="login-signin"]');
+        try{
+            $I = $wb = $this->getModule('WebDriver');
+            $I->amOnUrl("https://mail.yahoo.com");
+            $I->fillField('//*[@id="login-username"]', 'denimio_test@yahoo.com');
+            $I->click('//*[@id="login-signin"]');
+            $I->waitForElementVisible('//*[@id="login-passwd"]');
+            $I->fillField('//*[@id="login-passwd"]', 'fJ4qEn5Y');
+            $I->click('//*[@id="login-signin"]');
+        }catch (Exception $e){}
+
     }
 
     public function login()

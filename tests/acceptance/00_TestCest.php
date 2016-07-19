@@ -6,10 +6,10 @@ use \Step\Acceptance;
  */
 class TestCest
 {
-    function checkEmailNewPassword(\Step\Acceptance\LoginSteps $I)
+    function checkEmailNewsletters(\Step\Acceptance\LoginSteps $I)
     {
         $I->gMailAuth();
-        $I->checkNewPassword();
+        $I->checkNewsletterMsg();
     }
 
 }
