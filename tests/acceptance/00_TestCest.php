@@ -6,10 +6,10 @@ use \Step\Acceptance;
  */
 class TestCest
 {
-    function invalidURL(Step\Acceptance\LoginSteps $I, \Page\HomePage $homePage)
+    function checkEmailNewPassword(\Step\Acceptance\LoginSteps $I)
     {
-        $homePage->home(); 
-        $homePage->invalidURL();
+        $I->gMailAuth();
+        $I->checkNewPassword();
     }
 
 }

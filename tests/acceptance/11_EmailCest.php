@@ -17,10 +17,7 @@ class EmailCest
     {
         $I->checkWishlist();
     }
-    function checkEmailNewPassword(\Step\Acceptance\LoginSteps $I)
-    {
-        $I->checkNewPassword();
-    }
+    
     function removeAllMessage(\Step\Acceptance\LoginSteps $I){
         $I->gMailAuth();
         $I->removeMsgs();
