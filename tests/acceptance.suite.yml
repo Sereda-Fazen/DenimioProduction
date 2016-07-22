@@ -5,7 +5,7 @@ modules:
         - Helper\Acceptance
     config:
        WebDriver:
-          url: 'https://denimio.com'
+          url: 'http://localhost:8080'
           browser: chrome
           window_size: 1980x1780
           restart: false
@@ -14,19 +14,19 @@ modules:
           browser: chrome
           restart: false
           capabilities:
+           httpProxy: 'localhost'
+           httpPort: '8080'
            browserstack.autoWait: 60
            browserstack.user: 'mahotoharada1'
            browserstack.key: 'UYCHp6jL5gei8WxtKVjY'
            resolution:  1920x1080
            browserstack.debug: 'true'
+           browserstack.local: 'true'
            #applicationCacheEnabled: false
            unexpectedAlertBehaviour: 'accept'
            pageLoadStrategy: 'eager'
            os: 'WINDOWS'
            os_version: 7
-
-
-
 
 env:
 
@@ -105,4 +105,31 @@ env:
         config:
           WebDriver:
             url: 'http://browserstack.com/automate'
+
+
+  PROXY:
+    modules:
+      config:
+       WebDriver:
+         restart: false
+         host: 'hub.browserstack.com'
+         port: 80
+         browser: chrome
+         restart: false
+         capabilities:
+          httpProxy: 'localhost'
+          httpPort: '8080'
+          browserstack.autoWait: 60
+          browserstack.user: 'mahotoharada1'
+          browserstack.key: 'UYCHp6jL5gei8WxtKVjY'
+          resolution:  1920x1080
+          browserstack.local: 'true'
+
+
+
+
+
+
+
+
 

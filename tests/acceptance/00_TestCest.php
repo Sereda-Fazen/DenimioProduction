@@ -8,8 +8,8 @@ class TestCest
 {
     function checkEmailNewsletters(\Step\Acceptance\LoginSteps $I)
     {
-        $I->gMailAuth();
-        $I->checkNewsletterMsg();
+        $I->amOnPage('/');
+        $I->waitForElement('.first-child');
     }
 
 }

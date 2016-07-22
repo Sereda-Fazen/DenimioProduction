@@ -141,9 +141,9 @@ class CompareSteps extends \AcceptanceTester
         $I->wait(2);
         $I->click('//div[@class="category-products"]/ul/li[3]//div/div/div/ul/li');
         $I->waitForAjax(20);
-        $I->waitForElement('//*[@id="go_list_compare"]');
-        $I->waitForElementVisible('//*[@id="go_list_compare"]');
-        $I->click('//*[@id="go_list_compare"]');
+        $I->waitForElement('#go_list_compare');
+        $I->waitForElementVisible('#go_list_compare');
+        $I->click('#go_list_compare');
 
 
         $I->executeInSelenium(function (RemoteWebDriver $webdriver) {
