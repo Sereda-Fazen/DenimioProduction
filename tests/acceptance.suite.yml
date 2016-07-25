@@ -5,7 +5,7 @@ modules:
         - Helper\Acceptance
     config:
        WebDriver:
-          url: 'http://localhost:8080'
+          url: 'https://www.denimio.com'
           browser: chrome
           window_size: 1980x1780
           restart: false
@@ -81,7 +81,7 @@ env:
     modules:
       config:
         WebDriver:
-          url: 'https://149.202.195.201:4153/'
+          url: 'https://www.denimio.com'
           restart: false
           browser: chrome
           window_size: 1980x1780
@@ -93,8 +93,8 @@ env:
            browserstack.autoWait: 60
            browserstack.user: 'mahotoharada1'
            browserstack.key: 'UYCHp6jL5gei8WxtKVjY'
-           #browserstack.user: 'vladshalda1'
-           #browserstack.key: 'vMqut6yLFsfbhDzhB643'
+           browserstack.user: 'vladshalda1'
+           browserstack.key: 'vMqut6yLFsfbhDzhB643'
            resolution:  1920x1080
 
 
@@ -123,7 +123,7 @@ env:
           browserstack.user: 'mahotoharada1'
           browserstack.key: 'UYCHp6jL5gei8WxtKVjY'
           resolution:  1920x1080
-          browserstack.local: 'true'
+         # browserstack.local: 'true'
 
 
 
