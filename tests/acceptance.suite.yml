@@ -14,14 +14,14 @@ modules:
           browser: chrome
           restart: false
           capabilities:
-           httpProxy: 'localhost'
-           httpPort: '8080'
+           #httpProxy: 'localhost'
+           #httpPort: '8080'
            browserstack.autoWait: 60
            browserstack.user: 'mahotoharada1'
            browserstack.key: 'UYCHp6jL5gei8WxtKVjY'
            resolution:  1920x1080
            browserstack.debug: 'true'
-           browserstack.local: 'true'
+           #browserstack.local: 'true'
            #applicationCacheEnabled: false
            unexpectedAlertBehaviour: 'accept'
            pageLoadStrategy: 'eager'
